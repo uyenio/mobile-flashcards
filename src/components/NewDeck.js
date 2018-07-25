@@ -6,23 +6,15 @@ import { addNewDeck } from '../actions/deck';
 import TextInputField from './TextInputField';
 import PrimaryButton from './PrimaryButton';
 
-class NewDeckForm extends Component {
+class NewDeck extends Component {
   state = {
     title: '',
   };
 
-  handleOnPress = (payload) => {
-    if (this.state.title.length < 1) {
-      return Alert.alert(
-        'Your question',
-        'needs more than 1 character.',
-        { text: 'OK' },
-        { cancelable: false }
-      );
-    }
+  submitDeckTitle = (payload) => {
     const { title } = this.state;
     this.props.addNewDeck(payload);
-    this.props.navigation.navigate('QuizOverview', { title });
+    this.props.navigation.navigate('Deck', { title });
   };
 
   render() {
@@ -30,19 +22,18 @@ class NewDeckForm extends Component {
       <View>
         <TextInputField
           fieldLabel="What is the title of your new deck?"
-          maxLength={50}
           placeholder="Deck title"
           onChangeText={title => this.setState({ title })}
         />
-        <PrimaryButton onPress={() => this.handleOnPress(this.state)} />
+        <PrimaryButton onPress={() => this.submitDeckTitle(this.state)} />
       </View>
     );
   }
 }
 
-NewDeckForm.propTypes = {
+NewDeck.propTypes = {
   addNewDeck: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addNewDeck })(NewDeckForm);
+export default connect(null, { addNewDeck })(NewDeck);

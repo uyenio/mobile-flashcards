@@ -1,10 +1,10 @@
 import { 
+  TOGGLE_ANSWER,
   CORRECT_ANSWER, 
   INCORRECT_ANSWER, 
-  MANAGE_QUIZ_END_INC_SCORE, 
-  MANAGE_QUIZ_END_DEC_SCORE, 
-  RESET_QUIZ, 
-  TOGGLE_ANSWER
+  LAST_CORRECT_ANSWER, 
+  LAST_INCORRECT_ANSWER, 
+  RESTART_QUIZ
 } from "../config/constants";
 
 export const handleCorrectAnswer = () => ({
@@ -15,16 +15,16 @@ export const handleIncorrectAnswer = () => ({
   type: INCORRECT_ANSWER,
 });
 
-export const manageQuizEndIncrementScore = () => ({
-  type: MANAGE_QUIZ_END_INC_SCORE,
+export const handleLastCorrectAnswer = () => ({
+  type: LAST_CORRECT_ANSWER,
 });
 
-export const manageQuizEndDecrementScore = () => ({
-  type: MANAGE_QUIZ_END_DEC_SCORE,
+export const handleLastIncorrectAnswer = () => ({
+  type: LAST_INCORRECT_ANSWER,
 });
 
-export const resetQuiz = () => ({
-  type: RESET_QUIZ,
+export const restartQuiz = () => ({
+  type: RESTART_QUIZ,
 });
 
 export const toggleAnswer = () => ({

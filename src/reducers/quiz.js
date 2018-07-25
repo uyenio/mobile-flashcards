@@ -1,9 +1,9 @@
 import { 
   CORRECT_ANSWER, 
   INCORRECT_ANSWER, 
-  MANAGE_QUIZ_END_INC_SCORE, 
-  MANAGE_QUIZ_END_DEC_SCORE, 
-  RESET_QUIZ, 
+  LAST_CORRECT_ANSWER, 
+  LAST_INCORRECT_ANSWER,
+  RESTART_QUIZ, 
   TOGGLE_ANSWER 
 } from "../config/constants";
 
@@ -14,8 +14,7 @@ const initialState = {
   },
   quizNumbers: {
     questionNumber: 0,
-    quizScoreCorrect: 0,
-    quizScoreIncorrect: 0,
+    totalCorrectAnswers: 0
   },
 };
 
@@ -30,8 +29,7 @@ const quiz = (state = initialState, action) => {
         },
         quizNumbers: {
           questionNumber: state.quizNumbers.questionNumber + 1,
-          quizScoreCorrect: state.quizNumbers.quizScoreCorrect + 1,
-          quizScoreIncorrect: state.quizNumbers.quizScoreIncorrect,
+          totalCorrectAnswers: state.quizNumbers.totalCorrectAnswers + 1
         },
       };
     case INCORRECT_ANSWER:
@@ -43,11 +41,10 @@ const quiz = (state = initialState, action) => {
         },
         quizNumbers: {
           questionNumber: state.quizNumbers.questionNumber + 1,
-          quizScoreCorrect: state.quizNumbers.quizScoreCorrect,
-          quizScoreIncorrect: state.quizNumbers.quizScoreIncorrect + 1,
+          totalCorrectAnswers: state.quizNumbers.totalCorrectAnswers
         },
       };
-    case MANAGE_QUIZ_END_INC_SCORE:
+    case LAST_CORRECT_ANSWER:
       return {
         ...state,
         quizDisplay: {
@@ -56,11 +53,10 @@ const quiz = (state = initialState, action) => {
         },
         quizNumbers: {
           questionNumber: state.quizNumbers.questionNumber + 1,
-          quizScoreCorrect: state.quizNumbers.quizScoreCorrect + 1,
-          quizScoreIncorrect: state.quizNumbers.quizScoreIncorrect,
+          totalCorrectAnswers: state.quizNumbers.totalCorrectAnswers + 1
         },
       };
-    case MANAGE_QUIZ_END_DEC_SCORE:
+    case LAST_INCORRECT_ANSWER:
       return {
         ...state,
         quizDisplay: {
@@ -69,11 +65,10 @@ const quiz = (state = initialState, action) => {
         },
         quizNumbers: {
           questionNumber: state.quizNumbers.questionNumber + 1,
-          quizScoreCorrect: state.quizNumbers.quizScoreCorrect,
-          quizScoreIncorrect: state.quizNumbers.quizScoreIncorrect + 1,
+          totalCorrectAnswers: state.quizNumbers.totalCorrectAnswers
         },
       };
-    case RESET_QUIZ:
+    case RESTART_QUIZ:
       return {
         ...state,
         quizDisplay: {
@@ -82,8 +77,7 @@ const quiz = (state = initialState, action) => {
         },
         quizNumbers: {
           questionNumber: 0,
-          quizScoreCorrect: 0,
-          quizScoreIncorrect: 0,
+          totalCorrectAnswers: 0
         },
       };
     case TOGGLE_ANSWER:

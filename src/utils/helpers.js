@@ -7,10 +7,10 @@ export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(Notifications.cancelAllScheduledNotificationsAsync);
 }
 
-function createNotification() {
+function getDailyReminder() {
   return {
-    title: 'Learn something today!',
-    body: '👋 don\'t forget to take a quiz today!',
+    title: 'Daily Reminder',
+    body: 'You have not taken your daily quiz today yet.',
     ios: {
       sound: true,
     },
@@ -26,7 +26,7 @@ export function setLocalNotification(chosenTime) {
           if (status === 'granted') {
             Notifications.cancelAllScheduledNotificationsAsync();
 
-            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+            Notifications.scheduleLocalNotificationAsync(getDailyReminder(), {
               time: chosenTime,
               repeat: 'day',
             });

@@ -6,31 +6,13 @@ import { addNewCard } from '../actions/deck';
 import TextInputField from './TextInputField';
 import PrimaryButton from './PrimaryButton';
 
-class NewCardForm extends Component {
+class NewCard extends Component {
   state = {
     question: '',
     answer: '',
   };
 
-  handleOnPress = () => {
-    if (this.state.question.length < 2) {
-      return Alert.alert(
-        'Your question',
-        'needs more than 2 characters.',
-        { text: 'OK' },
-        { cancelable: false }
-      );
-    }
-
-    if (this.state.answer.length < 2) {
-      return Alert.alert(
-        'Your answer',
-        'needs more than 2 characters.',
-        { text: 'OK' },
-        { cancelable: false }
-      );
-    }
-
+  submitCard = () => {
     const { title } = this.props.navigation.state.params;
     const payload = {
       title,
@@ -45,26 +27,24 @@ class NewCardForm extends Component {
     return (
       <View>
         <TextInputField
-          fieldLabel="What question would you like to add?"
-          maxLength={100}
+          fieldLabel="Please enter your card question"
           placeholder="Question"
           onChangeText={question => this.setState({ question })}
         />
         <TextInputField
-          fieldLabel="What answer would you like to add?"
-          maxLength={100}
+          fieldLabel="Please enter your card answer"
           placeholder="Answer"
           onChangeText={answer => this.setState({ answer })}
         />
-        <PrimaryButton onPress={() => this.handleOnPress()} />
+        <PrimaryButton onPress={() => this.submitCard()} />
       </View>
     );
   }
 }
 
-NewCardForm.propTypes = {
+NewCard.propTypes = {
   addNewCard: PropTypes.func.isRequired,
   navigation: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addNewCard })(NewCardForm);
+export default connect(null, { addNewCard })(NewCard);

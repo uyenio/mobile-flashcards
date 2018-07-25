@@ -17,6 +17,9 @@ To run:
 * Jest
 * React Prop Types
 
+## Testing
+* Tested on iOS Simulator
+
 ## Contributing
 
 This repository is my complete assignment for Udacity's React Nanodegree course.

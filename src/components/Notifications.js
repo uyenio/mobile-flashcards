@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { Alert, DatePickerIOS, View } from 'react-native';
-import styled from 'styled-components/native';
 import PrimaryButton from './PrimaryButton';
 import SecondaryButton from './SecondaryButton';
 import {
   clearLocalNotification,
   setLocalNotification,
 } from '../utils/helpers';
-
-const ExplanationText = styled.Text`
-  font-size: 20;
-  text-align: center;
-  padding-top: 10;
-  padding-horizontal: 15;
-`;
+import { NotificationPrompt } from '../config/styles'
 
 class Notifications extends Component {
   constructor(props) {
     super(props);
     this.state = { chosenTime: new Date() };
-
     this.setTime = this.setTime.bind(this);
   }
 
@@ -28,7 +20,7 @@ class Notifications extends Component {
   }
 
   render() {
-    const displayConfirmNotificationAlert = (string) => {
+    const confirmNotification = (string) => {
       Alert.alert(
         'Notifications',
         `are ${string}`,
@@ -38,7 +30,7 @@ class Notifications extends Component {
     };
     return (
       <View>
-        <ExplanationText>Set a daily reminder</ExplanationText>
+        <NotificationPrompt>Set a daily reminder</NotificationPrompt>
         <DatePickerIOS
           date={this.state.chosenTime}
           onDateChange={this.setTime}
@@ -48,13 +40,13 @@ class Notifications extends Component {
           onPress={() =>
             clearLocalNotification()
               .then(setLocalNotification(this.state.chosenTime))
-              .then(displayConfirmNotificationAlert('activated.'))
+              .then(confirmNotification('activated.'))
           }
         />
         <SecondaryButton
           text="Clear notifications"
           onPress={() =>
-            clearLocalNotification().then(displayConfirmNotificationAlert('cancelled.'))
+            clearLocalNotification().then(confirmNotification('cancelled.'))
           }
         />
       </View>

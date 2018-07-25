@@ -2,26 +2,26 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { FontAwesome } from '@expo/vector-icons';
-import HomeView from '../components/HomeView';
+import Home from '../components/Home';
 import Settings from '../components/Settings';
-import QuizOverview from '../components/QuizOverview';
-import RunQuiz from '../components/RunQuiz';
-import NewDeckForm from '../components/NewDeckForm';
-import NewCardForm from '../components/NewCardForm';
+import Deck from '../components/Deck';
+import Quiz from '../components/Quiz';
+import NewDeck from '../components/NewDeck';
+import NewCard from '../components/NewCard';
 import Notifications from '../components/Notifications';
 import {
-  NAV_HEADER_BACKGROUND,
+  NAV_HEADER,
   NAV_HEADER_TINT,
   TAB_BAR_ACTIVE_TINT_ANDROID,
   TAB_BAR_ACTIVE_TINT_IOS,
-  TAB_BAR_BACKGROUND_ANDROID,
-  TAB_BAR_BACKGROUND_IOS,
+  TAB_BAR_ANDROID,
+  TAB_BAR_IOS,
 } from './colours';
 
 export const Tabs = createBottomTabNavigator(
   {
-    HomeView: {
-      screen: HomeView,
+    Home: {
+      screen: Home,
       navigationOptions: {
         tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor }) => (
@@ -29,8 +29,8 @@ export const Tabs = createBottomTabNavigator(
         ),
       },
     },
-    NewDeckForm: {
-      screen: NewDeckForm,
+    NewDeck: {
+      screen: NewDeck,
       navigationOptions: {
         tabBarLabel: 'Create quiz',
         tabBarIcon: ({ tintColor }) => (
@@ -61,8 +61,8 @@ export const Tabs = createBottomTabNavigator(
         height: 56,
         backgroundColor:
           Platform.OS === 'ios'
-            ? TAB_BAR_BACKGROUND_IOS
-            : TAB_BAR_BACKGROUND_ANDROID,
+            ? TAB_BAR_IOS
+            : TAB_BAR_ANDROID,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
@@ -79,33 +79,33 @@ export const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
   },
-  QuizOverview: {
-    screen: QuizOverview,
+  Deck: {
+    screen: Deck,
     navigationOptions: {
       title: 'Deck',
     },
   },
   Quiz: {
-    screen: RunQuiz,
+    screen: Quiz,
     navigationOptions: {
       title: 'Quiz',
     },
   },
-  NewDeckForm: {
-    screen: NewDeckForm,
+  NewDeck: {
+    screen: NewDeck,
     navigationOptions: {
       headerTintColor: NAV_HEADER_TINT,
       headerStyle: {
-        backgroundColor: NAV_HEADER_BACKGROUND,
+        backgroundColor: NAV_HEADER,
       },
     },
   },
-  NewCardForm: {
-    screen: NewCardForm,
+  NewCard: {
+    screen: NewCard,
     navigationOptions: {
       headerTintColor: NAV_HEADER_TINT,
       headerStyle: {
-        backgroundColor: NAV_HEADER_BACKGROUND,
+        backgroundColor: NAV_HEADER,
       },
     },
   },

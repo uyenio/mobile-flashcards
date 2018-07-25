@@ -1,12 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/native';
-
-const StyledButtonWrapper = styled.View`
-  margin-vertical: 50;
-  padding-top: 20;
-  padding-horizontal: 25;
-  padding-bottom: 25;
-`;
+import { StyledButtonWrapper } from '../config/styles';
 
 const ButtonWrapper = ({ children }) => (
   <StyledButtonWrapper>{children}</StyledButtonWrapper>

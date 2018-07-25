@@ -8,7 +8,7 @@ const decks = (state = initialDeckData, action) => {
         ...state,
         [action.payload.title]: {
           title: state[action.payload.title].title,
-          quizLength: state[action.payload.title].quizLength + 1,
+          totalQuestions: state[action.payload.title].totalQuestions + 1,
           questions: [
             ...state[action.payload.title].questions,
             {
@@ -23,7 +23,7 @@ const decks = (state = initialDeckData, action) => {
         ...state,
         [action.payload.title]: {
           ...action.payload,
-          quizLength: 0,
+          totalQuestions: 0,
           questions: [],
         },
       };
